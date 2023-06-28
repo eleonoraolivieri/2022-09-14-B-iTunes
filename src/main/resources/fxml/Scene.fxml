@@ -13,9 +13,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="620.0" prefWidth="651.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polito.tdp.itunes.FXMLController">
+<BorderPane prefHeight="620.0" prefWidth="651.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polito.tdp.itunes.FXMLController">
    <top>
-      <Label text="Esame 14/09/2022 iTunes - Turno B" BorderPane.alignment="CENTER">
+      <Label text="Esame 14/09/2022 iTunes - Turno A" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets bottom="10.0" />
          </BorderPane.margin>
@@ -67,7 +67,10 @@
                      </padding>
                   </Label>
                   <TextField fx:id="txtX" maxWidth="320.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <TextField fx:id="txtDurata" maxWidth="320.0" GridPane.columnIndex="1" />
+                  <TextField fx:id="txtDurata" maxWidth="320.0" GridPane.columnIndex="1">
+                     <font>
+                        <Font name="Arial" size="13.0" />
+                     </font></TextField>
                   <Label text="Album (a1)" GridPane.rowIndex="1">
                      <padding>
                         <Insets right="10.0" />
@@ -80,6 +83,9 @@
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
+               <font>
+                  <Font name="Arial" size="13.0" />
+               </font>
             </TextArea>
          </children>
       </VBox>

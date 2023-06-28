@@ -5,7 +5,12 @@
 package it.polito.tdp.itunes;
 
 import java.net.URL;
+import java.util.Collections;
+import java.util.List;
 import java.util.ResourceBundle;
+
+
+import it.polito.tdp.itunes.model.Album;
 import it.polito.tdp.itunes.model.Model;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -34,7 +39,7 @@ public class FXMLController {
     private Button btnSet; // Value injected by FXMLLoader
 
     @FXML // fx:id="cmbA1"
-    private ComboBox<?> cmbA1; // Value injected by FXMLLoader
+    private ComboBox<Album> cmbA1; // Value injected by FXMLLoader
 
     @FXML // fx:id="txtDurata"
     private TextField txtDurata; // Value injected by FXMLLoader
@@ -48,10 +53,36 @@ public class FXMLController {
     @FXML
     void doComponente(ActionEvent event) {
     	
+    	Album a = cmbA1.getValue();
+    	
+    	this.txtResult.appendText("\n Dimensione componente: " + this.model.calcolaComponentiConnesse(a).size());
+    	this.txtResult.appendText("\n Durata componente: " + this.model.calcolaDurataTot(a));
+    	
     }
 
     @FXML
     void doCreaGrafo(ActionEvent event) {
+    	
+    	int durata =0;
+    	try {
+    		durata = Integer.parseInt( this.txtDurata.getText() );
+    	} catch(NumberFormatException e) {
+    		this.txtResult.setText("Invalid argument. Durata must be a nonnegative integer!");
+    		return;
+    	}
+    	 if(durata<0) {
+    		 this.txtResult.setText("Durata must be a nonnegative integer.");
+    	 }
+    	 
+    	//creazione grafo.
+     	this.model.creaGrafo(durata);
+     	
+     	List<Album> vertici = this.model.getVertici();
+     	Collections.sort(vertici);
+     	this.txtResult.setText("Grafo creato, con " + this.model.getNVertici() + " vertici e " + this.model.getNArchi()+ " archi\n");
+     	System.out.println(vertici.toString());
+     	this.cmbA1.getItems().addAll(vertici);
+     	this.cmbA1.setDisable(false);
     	
     }
 
